@@ -1,0 +1,8 @@
+{
+	"config": {
+		"dossierDistination" : "D:/Perso/torrents/",
+		"urlListe" : "http://www.lfjfr.com/php/liste.php",
+		"dossierOrigine" : "http://www.lfjfr.com/cloud/happytor/",
+		"urlSuppression" : "http://www.lfjfr.com/php/delete.php?happytorfile="
+	}
+}

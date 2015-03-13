@@ -1,0 +1,360 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <!--META-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="API/css/themes/default/jquery.mobile.min.css" />
+    <!--<link rel="stylesheet" href="API/css/datatables/css/jquery.dataTables.css"/>--> 
+    <link rel="stylesheet" href="API/css/mycss.css" />
+    <link rel="stylesheet" href="css/mycss.css" />
+
+    <!--JS-->
+    <script type="text/javascript" src="API/js/jquery.min.js"></script>
+    <script type="text/javascript" src="API/js/jquery.mobile.min.js"></script>
+    <!--<script type="text/javascript" src="API/js/highcharts.js"></script>-->
+    <!--<script type="text/javascript" src="API/js/modules/exporting.js"></script>-->
+    <!--<script type="text/javascript" src="API/js/jquery.dataTables.min.js"></script>--> 
+    <script type="text/javascript" src="include/config.js"></script>
+    <script type="text/javascript" src="API/js/fonctions.js"></script>
+    <script type="text/javascript" src="js/fonctions.js"></script>
+
+    <script type="text/javascript">
+    checkMaintenance();
+    checkAuthentification();
+    
+    ///////////////////
+    //BLOCK VARIABLE GLOBAL
+    ///////////////////
+    var id_page = 20;
+
+    ///////////////////
+    //BLOCK FONCTIONS EVENEMENTS
+    ///////////////////
+    $(document).on('pageinit',function() {
+        try {
+            // Init commmun
+            init_commun();
+        } catch (er) {
+            log(0, "ERROR(init_home):" + er.message);
+        }
+    });
+
+    $(document).on('pageshow',function() {
+        try {
+            show_commun();
+        } catch (er) {
+            log(0, "ERROR(show):" + er.message);
+        }
+    });
+
+    //Fin chargement page
+    function OnLoad() {
+        try {
+            // Init page
+            afficherExperiences();
+            $( "#div_competences" ).trigger( "expand" );
+        } catch (er) {
+            log(0, "ERROR(OnLoad):" + er.message);
+        }
+    }
+		
+    ///////////////////
+    //BLOCK FONCTIONS METIER
+    ///////////////////
+    function afficherExperiences() {
+        try {
+            $( "#div_competences" ).trigger( "collapse" );
+
+            var strRecherche = $('#search-mini').textinput()[0].value;
+            var result = new Array();
+            result = getExperiences(strRecherche);
+
+            var strHtml = "";
+            strHtml = getExperiencesHTML(result);
+
+            $("#div_list_competences").html(strHtml).trigger('create');
+        } catch (er) {
+            log(0, "ERROR(afficherExperiences):" + er.message);
+        }
+    }
+		
+    ///////////////////
+    //BLOCK FONCTIONS PRESENTATION
+    ///////////////////
+    /**
+     * @name getExperiencesHTML
+     * @param {type} p_tab
+     * @returns {String}
+     */
+    function getExperiencesHTML(p_tab) {
+        try {
+            var strRetour = "";
+
+            strRetour += "<div data-role=\"content\" data-theme=\"c\"/ id=\"div_resultat_recherche\">";
+
+            var strCollapsed = "false";
+            if(p_tab.length > 3){
+                strCollapsed = "true";
+            }
+
+            for (var indice in p_tab) {
+                strRetour += "<div data-role=\"collapsible\" data-theme=\"c\" data-content-theme=\"c\" data-collapsed=\""+strCollapsed+"\" data-mini=\"true\">";
+                strRetour += "<h3>"+p_tab[indice]["titre_experience"]+" ("+p_tab[indice]["employeur"]+") - "+p_tab[indice]["debut"]+" &agrave; "+p_tab[indice]["fin"]+"</h3>";
+                if(p_tab[indice]["commentaire_titre"] != ""){
+                    strRetour += "<h5>"+p_tab[indice]["commentaire_titre"]+"</h5>";
+                    strRetour += "<hr>";
+                }
+                strRetour += "<dl title=\""+p_tab[indice]["titre_experience"]+"\">";
+                if(p_tab[indice]["fonction"] != ""){
+                    strRetour += "<dt><b>Fonction</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["fonction"]+"</dd>";
+                }
+                if(p_tab[indice]["secteur"] != ""){
+                    strRetour += "<dt><b>Secteur</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["secteur"]+"</dd>";
+                }
+                if(p_tab[indice]["fonctionnel"] != ""){
+                    strRetour += "<dt><b>Conception fonctionnelle</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["fonctionnel"]+"</dd>";
+                }
+                if(p_tab[indice]["realisation"] != ""){
+                    strRetour += "<dt><b>R&eacute;alisation</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["realisation"]+"</dd>";
+                }
+                if(p_tab[indice]["language"] != ""){
+                    strRetour += "<dt><b>Language</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["language"]+"</dd>";
+                }
+                if(p_tab[indice]["applicatif"] != ""){
+                    strRetour += "<dt><b>Environnement applicatif</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["applicatif"]+"</dd>";
+                }
+                if(p_tab[indice]["develloppement"] != ""){
+                    strRetour += "<dt><b>Environnement devellopement</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["develloppement"]+"</dd>";
+                }
+                if(p_tab[indice]["bdd"] != ""){
+                    strRetour += "<dt><b>Environnement base de donn&eacute;es</b></dt>";
+                    strRetour += "<dd>"+p_tab[indice]["bdd"]+"</dd>";
+                }
+                strRetour += "</dl>";
+                strRetour += "</div>";
+            }
+
+            strRetour += "</div>";
+
+            return strRetour;
+        
+        } catch (er) {
+            log(0, "ERROR(getExperiencesHTML):" + er.message);
+            return "";
+        }
+    }
+		
+    ///////////////////
+    //BLOCK FONCTIONS DB
+    ///////////////////
+    /**
+     * @name getExperiences
+     * @param {type} p_critere
+     * @returns {Array}
+     */
+    function getExperiences(p_critere) {
+        try {
+            var tabInput = { critere : p_critere };
+            var retour_json = callBD("phpsql/mysql_getExperiences.php", "POST", "json", tabInput);
+            var data = retour_json["data"]["resultat"]["data"];
+            return data;
+        } catch (er) {
+            log(0, "ERROR(getExperiences):" + er.message);
+        }
+    }
+    </script>
+</head> 
+
+<body onload="OnLoad();"> 
+
+    <!-- page -->
+    <div data-role="page" data-title="Mon CV en ligne - Fabrice Rosito">
+
+        <!-- /panel -->
+        <div data-role="panel" id="mypanel" data-display="overlay" data-position="left">
+
+        </div>
+        <!-- /panel -->
+
+        <!-- header -->
+        <div data-role="header" data-position="fixed">
+                <a href="#mypanel" data-role="button" data-icon="home" data-iconpos="notext">home</a>
+                <h1 id="id_titre">titre</h1>
+                <a href="javascript:window.location = ('./page_contact.html?mili='+getMilise());" data-role="button" data-icon="info" data-iconpos="notext">Contact</a>
+        </div>
+        <!-- /header -->
+
+        <!-- content -->
+        <div data-role="content" id="main_content">
+            
+            <div data-role="collapsible" data-collapsed="false" data-mini="true" id="div_recherche">
+                <h3>Mes exp&eacute;riences</h3>
+                <label for="search-mini">Texte de recherche :</label>	
+                <input type="search" name="search-mini" id="search-mini" value="" data-mini="true" placeholder="Votre recherche ici (Vide pour tout ou ex : java, test, etc...) :" />		
+                <a href="javascript:afficherExperiences();" data-role="button" data-inline="true" data-icon="arrow-r" data-mini="true">Soumettre</a>					
+                
+                <div id="div_list_competences"></div>
+            </div>
+            
+            <div data-role="collapsible" data-collapsed="false" data-mini="true" id="div_competences">
+                <h3>Mes comp&eacute;tences</h3>
+                <label>* 1 = de base, 2 = familier, 3 = comp&eacute;tent, 4 = expert</label>
+                <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke ui-table ui-table-reflow">
+                  <thead>
+                    <tr>
+                      <th data-priority="1">Savoir faire</th>
+                      <th data-priority="2">Ann&eacute;es</th>
+                      <th data-priority="1">Niveau*</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th colspan="3">Leadership</th>
+                    </tr>
+                    <tr>
+                      <td>Scrum.</td>
+                      <td>2</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>Kanban.</td>
+                      <td>1</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>TDD.</td>
+                      <td>2</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>Division Technique.</td>
+                      <td>2</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <th colspan="3">Comp&eacute;tences techniques</th>
+                    </tr>
+                    <tr>
+                      <td>Java (LOG4J, SPRING, JSP, Web Sphere, JUNIT, Ant, Maven, JQuery, JQueryMobile)</td>
+                      <td>5</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>.NET : version 1.0,  2.0 et 3.5, VB.net, C#, ASP, ASP.net</td>
+                      <td>2</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>SQL</td>
+                      <td>10</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>XML, SHELL, AJAX, PLSQL, ASM, XLST, VB, VB script, JavaScript, C, C++, Hibernate, CSS, XHTML</td>
+                      <td>8</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <th colspan="3">Connaissance des applications</th>
+                    </tr>
+                    <tr>
+                      <td>BDD : Access, Oracle, MYSQL, SQL Serveur</td>
+                      <td>10</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>IDE : Eclipse, NetBeans, Visual Studio, Jdeveloper</td>
+                      <td>8</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Gestion des sources : VSS, SVN</td>
+                      <td>5</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Serveur : WebSphere, Jonas, Tomcat, IIS, Apache</td>
+                      <td>5</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>Outils : UML, Pl/sql Developer, Jbuilder, Toad, SoapUi, FTP, VNC, putty</td>
+                      <td>8</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <th colspan="3">Disciplines en technologies de l'information (TI)</th>
+                    </tr>
+                    <tr>
+                      <td>Disciplines en technologies de l'information (TI)</td>
+                      <td>5</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <th colspan="3">Connaissance des secteurs</th>
+                    </tr>
+                    <tr>
+                      <td>T&eacute;l&eacute;coms : Application de m&eacute;diation (Inventaire, provisionning xDSL), Inventaire Morning, CIT, Sonatel, Interco.</td>
+                      <td>8</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>M&eacute;tallurgique : Laboratoire de recherche des productions.</td>
+                      <td>3</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Semi-conducteur : Gestion de la production.</td>
+                      <td>2</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Pharmaceutique : Gestion RH des chaines de production.</td>
+                      <td>2</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>Cimenterie : Gestion d'activit&eacute; des usines.</td>
+                      <td>2</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <th colspan="3">Autre comp&eacute;tence pertinente</th>
+                    </tr>
+                    <tr>
+                      <td>Statisticien.</td>
+                      <td>5</td>
+                      <td>2</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <!-- /content -->
+
+        <!-- footer -->
+        <div data-role="footer" data-position="fixed">
+            <a data-role="button" data-icon="search" data-iconpos="notext" class="ui-btn-left" href="javascript:window.location = ('./page_faq.html?mili='+getMilise());">FAQ</a>
+            <h1 id="id_affichageUser">User</h1>
+            <a data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" href="javascript:window.location = ('./page_sortie.html?mili='+getMilise());">Logout</a>
+        </div>
+        <!-- /footer -->
+
+    </div>
+    <!-- /page -->
+	
+</body>
+</html>
+

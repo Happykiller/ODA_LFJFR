@@ -1,0 +1,240 @@
+2013-08-05 16:58:04,332:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-05 16:58:04,379:INFO:Les options disponible sont : 'synchro'.
+2013-08-05 16:58:04,383:INFO:Exemple de syntax pour 'decode' : 'python script_import_rdrive.py exemple.config.rdrive.json synchro'.
+2013-08-05 16:58:04,387:INFO:Exemple de syntax pour 'more' : 'python script_import_rdrive.py more'.
+2013-08-05 16:58:04,392:INFO:Fin du script.
+2013-08-05 16:58:21,221:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-05 16:58:21,223:INFO:Mode d'action choisi : synchro.
+2013-08-05 16:58:21,225:DEBUG:Début chargement configuration
+2013-08-05 16:58:21,227:ERROR:Erreur pendant le chargement du fichier de configuration : exemple.config.rdrive.json
+2013-08-05 16:59:22,180:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-05 16:59:22,182:INFO:Mode d'action choisi : synchro.
+2013-08-05 16:59:22,184:DEBUG:Début chargement configuration
+2013-08-05 16:59:22,186:ERROR:Erreur pendant le chargement du fichier de configuration (global name 'codecs' is not defined)
+2013-08-05 16:59:54,038:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-05 16:59:54,040:INFO:Mode d'action choisi : synchro.
+2013-08-05 16:59:54,042:DEBUG:Début chargement configuration
+2013-08-05 16:59:54,044:DEBUG:Chargement configuration réussi
+2013-08-05 16:59:54,047:DEBUG:Début synchro
+2013-08-05 16:59:54,049:DEBUG:Fin synchro
+2013-08-05 16:59:54,051:INFO:Fin du script.
+2013-08-08 16:50:55,145:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 16:50:55,179:INFO:Les options disponible sont : 'synchro'.
+2013-08-08 16:50:55,180:INFO:Exemple de syntax pour 'decode' : 'python script_import_rdrive.py exemple.config.rdrive.json synchro'.
+2013-08-08 16:50:55,181:INFO:Exemple de syntax pour 'more' : 'python script_import_rdrive.py more'.
+2013-08-08 16:50:55,183:INFO:Fin du script.
+2013-08-08 16:58:58,261:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 16:58:58,281:INFO:Les options disponible sont : 'synchro'.
+2013-08-08 16:58:58,282:INFO:Exemple de syntax pour 'decode' : 'python script_import_rdrive.py exemple.config.rdrive.json synchro'.
+2013-08-08 16:58:58,282:INFO:Exemple de syntax pour 'more' : 'python script_import_rdrive.py more'.
+2013-08-08 16:58:58,283:INFO:Fin du script.
+2013-08-08 16:59:22,576:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 16:59:22,577:INFO:Les options disponible sont : 'synchro'.
+2013-08-08 16:59:22,577:INFO:Exemple de syntax pour 'decode' : 'python script_import_rdrive.py exemple.config.rdrive.json synchro'.
+2013-08-08 16:59:22,579:INFO:Exemple de syntax pour 'more' : 'python script_import_rdrive.py more'.
+2013-08-08 16:59:22,580:INFO:Fin du script.
+2013-08-08 16:59:47,510:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 16:59:47,510:INFO:Les options disponible sont : 'synchro'.
+2013-08-08 16:59:47,512:INFO:Exemple de syntax pour 'decode' : 'python script_import_rdrive.py exemple.config.rdrive.json synchro'.
+2013-08-08 16:59:47,513:INFO:Exemple de syntax pour 'more' : 'python script_import_rdrive.py more'.
+2013-08-08 16:59:47,514:INFO:Fin du script.
+2013-08-08 17:00:22,573:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:00:22,574:INFO:Les options disponible sont : 'synchro'.
+2013-08-08 17:00:22,574:INFO:Exemple de syntax pour 'decode' : 'python script_import_rdrive.py exemple.config.rdrive.json synchro'.
+2013-08-08 17:00:22,576:INFO:Exemple de syntax pour 'more' : 'python script_import_rdrive.py more'.
+2013-08-08 17:00:22,578:INFO:Fin du script.
+2013-08-08 17:00:52,185:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:00:52,187:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:00:52,189:DEBUG:Début chargement configuration
+2013-08-08 17:00:52,214:DEBUG:Chargement configuration réussi
+2013-08-08 17:00:52,216:DEBUG:Début synchro
+2013-08-08 17:00:52,217:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:00:52,220:ERROR:Erreur pendant synchro ('module' object has no attribute 'urlretrieve')
+2013-08-08 17:01:13,767:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:01:13,769:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:01:13,771:DEBUG:Début chargement configuration
+2013-08-08 17:01:13,773:DEBUG:Chargement configuration réussi
+2013-08-08 17:01:13,775:DEBUG:Début synchro
+2013-08-08 17:01:13,777:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:01:13,780:ERROR:Erreur pendant synchro (global name 'urlretrieve' is not defined)
+2013-08-08 17:03:09,867:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:03:09,869:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:03:09,871:DEBUG:Début chargement configuration
+2013-08-08 17:03:09,873:DEBUG:Chargement configuration réussi
+2013-08-08 17:03:09,875:DEBUG:Début synchro
+2013-08-08 17:03:09,877:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:03:09,879:ERROR:Erreur pendant synchro ('module' object has no attribute 'urlopen')
+2013-08-08 17:03:24,907:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:03:24,909:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:03:24,911:DEBUG:Début chargement configuration
+2013-08-08 17:03:24,913:DEBUG:Chargement configuration réussi
+2013-08-08 17:03:24,915:DEBUG:Début synchro
+2013-08-08 17:03:24,917:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:03:24,919:ERROR:Erreur pendant synchro (global name 'urlopen' is not defined)
+2013-08-08 17:05:07,017:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:05:07,018:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:05:07,019:DEBUG:Début chargement configuration
+2013-08-08 17:05:07,020:DEBUG:Chargement configuration réussi
+2013-08-08 17:05:07,022:DEBUG:Début synchro
+2013-08-08 17:05:07,024:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:05:28,045:ERROR:Erreur pendant synchro ([Errno socket error] [WinError 10060] Une tentative de connexion a échoué car le parti connecté n’a pas répondu convenablement au-delà d’une certaine durée ou une connexion établie a échoué car l’hôte de connexion n’a pas répondu)
+2013-08-08 17:07:57,495:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:07:57,516:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:07:57,516:DEBUG:Début chargement configuration
+2013-08-08 17:07:57,517:DEBUG:Chargement configuration réussi
+2013-08-08 17:07:57,518:DEBUG:Début synchro
+2013-08-08 17:07:57,520:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:08:18,535:ERROR:Erreur pendant synchro ([Errno socket error] [WinError 10060] Une tentative de connexion a échoué car le parti connecté n’a pas répondu convenablement au-delà d’une certaine durée ou une connexion établie a échoué car l’hôte de connexion n’a pas répondu)
+2013-08-08 17:10:01,782:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:10:01,783:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:10:01,783:DEBUG:Début chargement configuration
+2013-08-08 17:10:01,785:DEBUG:Chargement configuration réussi
+2013-08-08 17:10:01,786:DEBUG:Début synchro
+2013-08-08 17:10:01,788:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:10:01,790:ERROR:Erreur pendant synchro ('module' object has no attribute 'urlopen')
+2013-08-08 17:11:56,669:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:11:56,670:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:11:56,671:DEBUG:Début chargement configuration
+2013-08-08 17:11:56,672:DEBUG:Chargement configuration réussi
+2013-08-08 17:11:56,674:DEBUG:Début synchro
+2013-08-08 17:11:56,676:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:11:56,778:DEBUG:Fin synchro
+2013-08-08 17:11:56,780:INFO:Fin du script.
+2013-08-08 17:12:52,590:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:12:52,591:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:12:52,591:DEBUG:Début chargement configuration
+2013-08-08 17:12:52,593:DEBUG:Chargement configuration réussi
+2013-08-08 17:12:52,594:DEBUG:Début synchro
+2013-08-08 17:12:52,597:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:12:52,683:DEBUG:Fin synchro
+2013-08-08 17:12:52,684:INFO:Fin du script.
+2013-08-08 17:15:45,116:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:15:45,117:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:15:45,118:DEBUG:Début chargement configuration
+2013-08-08 17:15:45,119:DEBUG:Chargement configuration réussi
+2013-08-08 17:15:45,121:DEBUG:Début synchro
+2013-08-08 17:15:45,123:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:15:45,222:DEBUG:Fin synchro
+2013-08-08 17:15:45,223:INFO:Fin du script.
+2013-08-08 17:16:31,087:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:16:31,088:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:16:31,088:DEBUG:Début chargement configuration
+2013-08-08 17:16:31,090:DEBUG:Chargement configuration réussi
+2013-08-08 17:16:31,091:DEBUG:Début synchro
+2013-08-08 17:16:31,093:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:16:31,330:DEBUG:ici : D:/DISE/Items/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:16:31,339:DEBUG:Fin synchro
+2013-08-08 17:16:31,341:INFO:Fin du script.
+2013-08-08 17:19:52,547:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:19:52,549:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:19:52,551:DEBUG:Début chargement configuration
+2013-08-08 17:19:52,553:DEBUG:Chargement configuration réussi
+2013-08-08 17:19:52,555:DEBUG:Début synchro
+2013-08-08 17:19:52,557:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:19:52,647:DEBUG:ici : D:/Perso/torrents/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:19:52,775:DEBUG:ici : {"code":"ok","message":{"message":"Fichier supprim\u00e9 avec succ\u00e8s !","path":"..\/cloud\/happytor\/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent"}} 
+2013-08-08 17:19:52,783:DEBUG:Fin synchro
+2013-08-08 17:19:52,787:INFO:Fin du script.
+2013-08-08 17:22:07,143:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:22:07,144:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:22:07,145:DEBUG:Début chargement configuration
+2013-08-08 17:22:07,146:DEBUG:Chargement configuration réussi
+2013-08-08 17:22:07,148:DEBUG:Début synchro
+2013-08-08 17:22:07,150:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/
+2013-08-08 17:22:07,243:ERROR:Erreur pendant synchro (Can't convert 'bytes' object to str implicitly)
+2013-08-08 17:22:30,513:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:22:30,514:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:22:30,515:DEBUG:Début chargement configuration
+2013-08-08 17:22:30,516:DEBUG:Chargement configuration réussi
+2013-08-08 17:22:30,518:DEBUG:Début synchro
+2013-08-08 17:22:30,520:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/
+2013-08-08 17:22:30,662:ERROR:Erreur pendant synchro ('addinfourl' object has no attribute 'decode')
+2013-08-08 17:22:40,441:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:22:40,442:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:22:40,442:DEBUG:Début chargement configuration
+2013-08-08 17:22:40,444:DEBUG:Chargement configuration réussi
+2013-08-08 17:22:40,445:DEBUG:Début synchro
+2013-08-08 17:22:40,447:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/
+2013-08-08 17:22:40,525:DEBUG:ici : <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+ <head>
+  <title>Index of /cloud/happytor</title>
+ </head>
+ <body>
+<h1>Index of /cloud/happytor</h1>
+<pre><img src="/icons/blank.gif" alt="Icon "> <a href="?C=N;O=D">Name</a>                    <a href="?C=M;O=A">Last modified</a>      <a href="?C=S;O=A">Size</a>  <a href="?C=D;O=A">Description</a><hr><img src="/icons/back.gif" alt="[DIR]"> <a href="/cloud/">Parent Directory</a>                             -   
+<img src="/icons/unknown.gif" alt="[   ]"> <a href="Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent">Avengers.Assemble.S0..&gt;</a> 08-Aug-2013 17:22  9.2K  
+<hr></pre>
+</body></html>
+
+2013-08-08 17:22:40,551:DEBUG:Fin synchro
+2013-08-08 17:22:40,553:INFO:Fin du script.
+2013-08-08 17:51:20,889:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:51:20,890:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:51:20,891:DEBUG:Début chargement configuration
+2013-08-08 17:51:20,892:ERROR:Erreur pendant le chargement du fichier de configuration (Expecting ',' delimiter: line 5 column 3 (char 117))
+2013-08-08 17:51:34,304:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:51:34,305:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:51:34,306:DEBUG:Début chargement configuration
+2013-08-08 17:51:34,307:DEBUG:Chargement configuration réussi
+2013-08-08 17:51:34,309:DEBUG:Début synchro
+2013-08-08 17:51:34,311:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:51:34,432:ERROR:Erreur pendant synchro ('str' object has no attribute 'read')
+2013-08-08 17:52:10,854:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:52:10,855:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:52:10,856:DEBUG:Début chargement configuration
+2013-08-08 17:52:10,857:DEBUG:Chargement configuration réussi
+2013-08-08 17:52:10,859:DEBUG:Début synchro
+2013-08-08 17:52:10,861:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:52:10,996:ERROR:Erreur pendant synchro (can't use a string pattern on a bytes-like object)
+2013-08-08 17:52:29,435:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:52:29,436:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:52:29,437:DEBUG:Début chargement configuration
+2013-08-08 17:52:29,438:DEBUG:Chargement configuration réussi
+2013-08-08 17:52:29,440:DEBUG:Début synchro
+2013-08-08 17:52:29,442:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:52:29,628:ERROR:Erreur pendant synchro ('bytes' object has no attribute 'read')
+2013-08-08 17:53:07,873:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:53:07,874:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:53:07,874:DEBUG:Début chargement configuration
+2013-08-08 17:53:07,876:DEBUG:Chargement configuration réussi
+2013-08-08 17:53:07,877:DEBUG:Début synchro
+2013-08-08 17:53:07,879:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:53:07,996:ERROR:Erreur pendant synchro ('str' object has no attribute 'read')
+2013-08-08 17:54:00,233:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:54:00,234:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:54:00,234:DEBUG:Début chargement configuration
+2013-08-08 17:54:00,236:DEBUG:Chargement configuration réussi
+2013-08-08 17:54:00,238:DEBUG:Début synchro
+2013-08-08 17:54:00,239:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:54:00,370:DEBUG:ici : {"code":"ko","message":["Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent"]} 
+2013-08-08 17:54:00,372:DEBUG:Fin synchro
+2013-08-08 17:54:00,373:INFO:Fin du script.
+2013-08-08 17:54:07,241:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:54:07,242:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:54:07,243:DEBUG:Début chargement configuration
+2013-08-08 17:54:07,244:DEBUG:Chargement configuration réussi
+2013-08-08 17:54:07,246:DEBUG:Début synchro
+2013-08-08 17:54:07,248:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:54:07,385:ERROR:Erreur pendant synchro (Can't convert 'dict' object to str implicitly)
+2013-08-08 17:54:37,637:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:54:37,638:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:54:37,639:DEBUG:Début chargement configuration
+2013-08-08 17:54:37,640:DEBUG:Chargement configuration réussi
+2013-08-08 17:54:37,642:DEBUG:Début synchro
+2013-08-08 17:54:37,644:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:54:37,780:DEBUG:ici : ko
+2013-08-08 17:54:37,782:DEBUG:Fin synchro
+2013-08-08 17:54:37,783:INFO:Fin du script.
+2013-08-08 17:57:08,936:INFO:Bienvenue dans le script de synchro GDrive.
+2013-08-08 17:57:08,939:INFO:Mode d'action choisi : synchro.
+2013-08-08 17:57:08,941:DEBUG:Début chargement configuration
+2013-08-08 17:57:08,944:DEBUG:Chargement configuration réussi
+2013-08-08 17:57:08,945:DEBUG:Début synchro
+2013-08-08 17:57:08,947:DEBUG:ici : http://www.lfjfr.com/php/liste.php
+2013-08-08 17:57:09,130:DEBUG:ici : ok
+2013-08-08 17:57:09,135:DEBUG:ici : http://www.lfjfr.com/cloud/happytor/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:57:09,250:DEBUG:ici : D:/Perso/torrents/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent
+2013-08-08 17:57:09,364:DEBUG:ici : {"code":"ok","message":{"message":"Fichier supprim\u00e9 avec succ\u00e8s !","path":"..\/cloud\/happytor\/Avengers.Assemble.S01E01.FASTSUB.VOSTFR.720p.HDTV.x264-PROTEiGON.torrent"}} 
+2013-08-08 17:57:09,371:DEBUG:Fin synchro
+2013-08-08 17:57:09,376:INFO:Fin du script.
