@@ -1,29 +1,29 @@
 <?php
-//Config : Les informations personnels de l'instance (log, pass, etc)
-require_once(dirname(__FILE__)."/../include/config.php");
+namespace ProjectExemple;
+use stdClass, \Oda\OdaLib, \Oda\OdaPrepareInterface;
+//--------------------------------------------------------------------------
+//Header
+require("../API/php/header.php");
+require("../php/ProjectExempleInterface.php");
 
-//API lib for ODA
-require_once(dirname(__FILE__).'/../API/php/liboda.class.php');
+//--------------------------------------------------------------------------
+//Build the interface
+$params = new OdaPrepareInterface();
+$params->interface = "API/test";
+$PROJECT_INTERFACE = new ProjectExempleInterface($params);
 
-//Old API lib for ODA
-require_once(dirname(__FILE__)."/../API/php/fonctions.php");
-
-//Project functions
-require_once(dirname(__FILE__)."/../php/fonctions.php");
-
-//API lib for ODA
-$liboda = new LIBODA();
+//--------------------------------------------------------------------------
+// test/test.php
 
 //--------------------------------------------------------------------------
 // On transforme les résultats en tableaux d'objet
 $retours = array();
 
 //--------------------------------------------------------------------------
-$retours[] = test("get_string_between",function() {
-        $v_test = get_string_between("01234", "1", "3");
-        equal($v_test, "2", "Test OK : Passed!");
-    }         
-);
+
+$retours[] = OdaLib::test("test",function() {
+    OdaLib::equal(true, true, "Test OK : Passed!");  
+});
 
 //--------------------------------------------------------------------------
 //Out
@@ -39,9 +39,4 @@ foreach($retours as $key => $value) {
  }
 
 //--------------------------------------------------------------------------
-$resultats_json = json_encode($resultats);
-
-$strSorti = $resultats_json;
-
-print_r($strSorti);
-?>
+$PROJECT_INTERFACE->addDataObject($resultats);

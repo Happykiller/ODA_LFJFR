@@ -3,30 +3,31 @@
   <head>
     <!--META-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="msapplication-tap-highlight" content="no" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
     <!--CSS-->
+    <link rel="icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="API/css/themes/default/jquery.mobile.min.css" />
-    <!--<link rel="stylesheet" href="API/css/datatables/css/jquery.dataTables.css"/>--> 
+    <!--<link rel="stylesheet" href="API/js/DataTables/css/jquery.dataTables.min.css"/>--> 
     <link rel="stylesheet" href="API/css/mycss.css" />
     <link rel="stylesheet" href="css/mycss.css" />
 
     <!--JS-->
-    <script type="text/javascript" src="API/js/jquery.min.js"></script>
-    <script type="text/javascript" src="API/js/jquery.mobile.min.js"></script>
-    <!--<script type="text/javascript" src="API/js/highcharts.js"></script>-->
-    <!--<script type="text/javascript" src="API/js/modules/exporting.js"></script>-->
-    <!--<script type="text/javascript" src="API/js/jquery.dataTables.min.js"></script>--> 
     <script type="text/javascript" src="include/config.js"></script>
-    <script type="text/javascript" src="API/js/fonctions.js"></script>
+    <script type="text/javascript" src="API/js/Jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="API/js/JqueryMobile/jquery.mobile.min.js"></script>
+    <!--<script type="text/javascript" src="API/js/Highcharts/highcharts.js"></script>-->
+    <!--<script type="text/javascript" src="API/js/Highcharts/modules/exporting.js"></script>-->
+    <!--<script type="text/javascript" src="API/js/DataTables/js/jquery.dataTables.min.js"></script>--> 
+    <!--<script type="text/javascript" src="API/js/Ckeditor/ckeditor.js"></script>--> 
+    <!--<script type="text/javascript" src="API/js/Ckeditor/jquery.js"></script>--> 
     <script type="text/javascript" src="API/js/functionsLib.js"></script>
     <script type="text/javascript" src="js/fonctions.js"></script>
 
     <script type="text/javascript">
-    checkMaintenance();
-    checkAuthentification();
-    
     ///////////////////
     //BLOCK VARIABLE GLOBAL
     ///////////////////
@@ -36,11 +37,11 @@
     //BLOCK FONCTIONS EVENEMENTS
     ///////////////////    
     /**
-     * @name onBodyLoad
+     * @name OnLoad
      * @desc this function is execute when all is ready
      * @return {boolean}
      */
-    function onBodyLoad(){
+    function OnLoad(){
         try {
             var myReturn = true;
             
@@ -48,7 +49,7 @@
             
             return myReturn;
         } catch (er) {
-            log(0, "ERROR(onBodyLoad):" + er.message);
+            $.functionsLib.log(0, "ERROR(OnLoad):" + er.message);
             return null;
         }
     }
@@ -66,14 +67,14 @@
         try {
             var myReturn = true;
             
-            notification("Merci de patienter ...", _INFO);
+            $.functionsLib.notification("Merci de patienter ...", $.functionsLib.INFO);
             var tabSetting = { functionRetour : retourExemple};
             var tabInput = { test : 'ok' };
-            $.functionsLib.callRest("phpsql/exemple.php", tabSetting, tabInput); 
+            $.functionsLib.callRest(domaine+"phpsql/exemple.php", tabSetting, tabInput); 
             
             return myReturn;
         } catch (er) {
-            log(0, "ERROR(chargerExemple):" + er.message);
+            $.functionsLib.log(0, "ERROR(chargerExemple):" + er.message);
             return null;
         }
     }
@@ -92,14 +93,14 @@
             if(p_retour["strErreur"] == ""){
                 var strhtml = "Hello";
                 $('#div_exemple').html(strhtml);
-                notification("Bravo", _SUCCES);
+                $.functionsLib.notification("Bravo", $.functionsLib.oda_msg_color.SUCCES);
             } else{
-                notification("Erreur : "+p_retour["strErreur"], _ALERT);
+                $.functionsLib.notification("Erreur : "+p_retour["strErreur"], $.functionsLib.oda_msg_color.ERROR);
             }
             
             return myReturn;
         } catch (er) {
-            log(0, "ERROR(retourExemple):" + er.message);
+            $.functionsLib.log(0, "ERROR(retourExemple):" + er.message);
             return null;
         }
     }
@@ -121,7 +122,7 @@
         <div data-role="header" data-position="fixed">
             <a href="#mypanel" data-role="button" data-icon="home" data-iconpos="notext">home</a>
             <h1 id="id_titre">titre</h1>
-            <a href="javascript:window.location = ('./page_contact.html?mili='+getMilise());" data-role="button" data-icon="info" data-iconpos="notext">Contact</a>
+            <a href="javascript:window.location = ('./api_page_contact.html?mili='+$.functionsLib.getMilise());" data-role="button" data-icon="info" data-iconpos="notext">Contact</a>
         </div>
         <!-- /header -->
         
@@ -139,9 +140,9 @@
 
         <!-- footer -->
         <div data-role="footer" data-position="fixed">
-            <a data-role="button" data-icon="search" data-iconpos="notext" class="ui-btn-left" href="javascript:window.location = ('./page_faq.html?mili='+getMilise());">FAQ</a>
+            <a data-role="button" data-icon="search" data-iconpos="notext" class="ui-btn-left" href="javascript:window.location = ('./api_page_faq.html?mili='+$.functionsLib.getMilise());">FAQ</a>
             <h1 id="id_affichageUser">User</h1>
-            <a data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" href="javascript:window.location = ('./page_sortie.html?mili='+getMilise());">Logout</a>
+            <a data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" href="javascript:window.location = ('./api_page_sortie.html?mili='+$.functionsLib.getMilise());">Logout</a>
         </div>
         <!-- /footer -->
 

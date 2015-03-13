@@ -1,94 +1,105 @@
 <?php
-//Header établie la connection à la base $connection
+namespace ProjectExemple;
+use stdClass, \Oda\OdaPrepareInterface, \Oda\OdaPrepareReqSql, \Oda\OdaLibBd;
+//--------------------------------------------------------------------------
+//Header
 require("../API/php/header.php");
+require("../php/ProjectExempleInterface.php");
 
-//Fonctions : Fonctions personnelles de l'instance
-require("../php/fonctions.php");
+//--------------------------------------------------------------------------
+//Build the interface
+$params = new OdaPrepareInterface();
+$params->arrayInput = array("param_name");
+$INTERFACE = new ProjectExempleInterface($params);
 
-//Mode debug
-$modeDebug = false;
-
-//Public ou privé (clé obligatoire)
-$modePublic = true;
-
-//Mode de sortie text,json,xml,csv
-//Pour le text utiliser $strSorti pour la sortie.
-//Pour le json $object_retour sera decoder
-//Pour le xml et csv $object_retour->data["resultat"]->data doit contenir qu'un est unique array.
-$modeSortie = "json";
-
-//Liens de test
-// phpsql/exemple.php?milis=123450&ctrl=ok&test=ok
-
-//Définition des entrants
-$arrayInput = array(
-    "ctrl" => null,
-    "test" => null
-);
-
-//Définition des entrants optionel
-$arrayInputOpt = array(
-    "option" => null
-);
-
-//Récupération des entrants
-$arrayValeur = recupInput($arrayInput,$arrayInputOpt);
-
-//Object retour minima
-// $object_retour->strErreur string
-// $object_retour->data  string
-// $object_retour->statut  string
-// $object_retour->id_transaction  string
-// $object_retour->metro  string
+//--------------------------------------------------------------------------
+// phpsql/exemple.php?milis=123450&ctrl=ok&param_name=nom_site
 
 //--------------------------------------------------------------------------
 //EXEMPLE SELECT 1 ROW
-$params = new stdClass();
-$params->connection = $connection;
+$params = new OdaPrepareReqSql();
 $params->sql = "SELECT *
-    FROM `".$prefixTable."api_tab_parametres` a
+    FROM `api_tab_parametres` a
     WHERE 1=1
     AND a.`param_name` = :param_name
 ;";
-$params->bindsValue = ["param_name" => [ "value" => $arrayValeur["error"],  "type" => PDO::PARAM_STR]];
-$params->typeSQL = $liboda->SQL_GET_ONE;
-$params->debug = $modeDebug;
-$retour = $liboda->reqODASQL($params);
-$object_retour->data["resultat0"] = $retour->data;
+$params->bindsValue = [
+    "param_name" => $INTERFACE->inputs["param_name"]
+];
+$params->typeSQL = OdaLibBd::SQL_GET_ONE;
+$retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
+
+$params = new stdClass();
+$params->label = "resultat_get_one";
+$params->retourSql = $retour;
+$INTERFACE->addDataReqSQL($params);
 
 //--------------------------------------------------------------------------
 //EXEMPLE SELECT N ROWS
-$params = new stdClass();
-$params->connection = $connection;
+$params = new OdaPrepareReqSql();
 $params->sql = "SELECT *
-    FROM `".$prefixTable."api_tab_parametres` a
+    FROM `api_tab_parametres` a
     WHERE 1=1
 ;";
-$params->typeSQL = $liboda->SQL_GET_ALL;
-$params->debug = $modeDebug;
-$retour = $liboda->reqODASQL($params);
-$object_retour->data["resultat"] = $retour->data;
+$params->typeSQL = OdaLibBd::SQL_GET_ALL;
+$retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
+
+$params = new stdClass();
+$params->label = "resultat_get_all";
+$params->retourSql = $retour;
+$INTERFACE->addDataReqSQL($params);
+
+//--------------------------------------------------------------------------
+//EXEMPLE CLASS
+class objRetour {
+    public $id;
+    public $param_name;
+    public $param_type;
+    public $param_value;
+    public function getHello(){
+       return "Hello : " . $this->param_name;
+    }
+}
+
+$params = new OdaPrepareReqSql();
+$params->sql = "SELECT *
+    FROM `api_tab_parametres` a
+    WHERE 1=1
+    AND a.`param_name` = :param_name
+;";
+$params->bindsValue = [
+    "param_name" => [ "value" => "nom_site", "type" => \PDO::PARAM_STR ]
+];
+$params->typeSQL = OdaLibBd::SQL_GET_ONE;
+$params->className = "\ProjectExemple\objRetour";
+$retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
+
+$params = new stdClass();
+$params->label = "resultat_class";
+$params->value = $retour->data->getHello();
+$INTERFACE->addDataStr($params);
 
 //--------------------------------------------------------------------------
 //EXEMPLE EXEC
-$params = new stdClass();
-$params->connection = $connection;
+$params = new OdaPrepareReqSql();
 $params->sql = "CREATE TEMPORARY TABLE coucou (
     `idElem` int(11) NOT NULL,
     `nature` varchar(100),
     PRIMARY KEY(`idElem`)
 )
-    SELECT a.`id` as 'idElem', a.`param_name` as 'nature' FROM `".$prefixTable."api_tab_parametres` a
+    SELECT a.`id` as 'idElem', a.`param_name` as 'nature' FROM `api_tab_parametres` a
 ;";
-$params->typeSQL = $liboda->SQL_SCRIPT;
-$params->debug = $modeDebug;
-$retour = $liboda->reqODASQL($params);
-$object_retour->data["resultat1"] = $retour->data;
+$params->typeSQL = OdaLibBd::SQL_SCRIPT;
+$retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
+
+$params = new stdClass();
+$params->label = "resultat_exec";
+$params->value = $retour->nombre;
+$INTERFACE->addDataStr($params);
 
 //--------------------------------------------------------------------------
 //EXEMPLE INSERT 1 DATA
-$params = new stdClass();
-$params->connection = $connection;
+$params = new OdaPrepareReqSql();
 $params->sql = "INSERT INTO  `coucou` (
         `idElem` ,
         `nature` 
@@ -97,27 +108,30 @@ $params->sql = "INSERT INTO  `coucou` (
         99 ,  :nature
     )
 ;";
-$params->bindsValue = ["nature" => [ "value" => "coucou",  "type" => PDO::PARAM_STR]];
-$params->typeSQL = $liboda->SQL_INSERT_ONE;
-$params->debug = $modeDebug;
-$retour = $liboda->reqODASQL($params);
-$object_retour->data["resultat2"] = $retour->data;
+$params->bindsValue = [
+    "nature" => [ "value" => "coucou"]
+];
+$params->typeSQL = OdaLibBd::SQL_INSERT_ONE;
+$retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
+
+$params = new stdClass();
+$params->label = "resultat_insert";
+$params->value = $retour->data;
+$INTERFACE->addDataStr($params);
 
 //--------------------------------------------------------------------------
 //EXEMPLE UPDATE
-$params = new stdClass();
-$params->connection = $connection;
+$params = new OdaPrepareReqSql();
 $params->sql = "UPDATE `coucou`
     SET `nature` = 'hello'
     WHERE 1=1
     AND `idElem` = 99
 ;";
-$params->typeSQL = $liboda->SQL_SCRIPT;
-$params->debug = $modeDebug;
-$retour = $liboda->reqODASQL($params);
-$object_retour->data["resultat3"] = $retour->data;
+$params->typeSQL = OdaLibBd::SQL_SCRIPT;
+$params->debug = true;
+$retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
 
-//---------------------------------------------------------------------------
-
-//Cloture de l'interface
-require("../API/php/footer.php");
+$params = new stdClass();
+$params->label = "resultat_update";
+$params->value = $retour->nombre;
+$INTERFACE->addDataStr($params);

@@ -19,10 +19,10 @@
 
     ////////////////////////// PRIVATE METHODS ////////////////////////
 
-    /**
-     * 
-     * @returns {undefined}
-     */
+	/**
+	 * @name _init
+	 * @desc Initialize
+	 */
     function _init() {
         //
     }
@@ -43,7 +43,7 @@
             try {
                 return true;
             } catch (er) {
-                log(0, "ERROR(checkAuth):" + er.message);
+                console.log(0, "ERROR($.functionsApp.exemple):" + er.message);
                 return false;
             }
         }
