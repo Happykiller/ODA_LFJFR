@@ -1,0 +1,156 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <!--META-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <!--CSS-->
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="API/css/themes/default/jquery.mobile.min.css" />
+    <link rel="stylesheet" href="API/css/themes/default/jquery.mobile.structure.min.css" />
+    <link rel="stylesheet" href="API/css/mycss.css" />
+    <link rel="stylesheet" href="css/mycss.css" />
+
+    <!--JS-->
+    <script type="text/javascript" src="include/config.js"></script>
+    <script type="text/javascript" src="API/js/Jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="API/js/JqueryMobile/jquery.mobile.min.js"></script>
+    <script type="text/javascript" src="API/js/functionsLib.js"></script>
+    <script type="text/javascript" src="js/fonctions.js"></script>
+
+    <script type="text/javascript">
+    ///////////////////
+    //BLOCK VARIABLE GLOBAL
+    ///////////////////
+    var id_page = 71;
+
+    ///////////////////
+    //BLOCK FONCTIONS EVENEMENTS
+    ///////////////////
+
+    //Fin chargement page
+    function OnLoad() {
+        try {
+            //
+        } catch (er) {
+            $.functionsLib.log(0, "ERROR(OnLoad):" + er.message);
+        }
+    }
+
+    ///////////////////
+    //BLOCK FONCTIONS METIER
+    ///////////////////
+    /**
+     * creerCompte
+     */
+    function creerCompte(){
+        try {
+            var input_nom = $("#input_nom").val();
+            var input_cle = $("#input_cle").val();
+            var input_code_user = $("#input_code_user").val();
+            var input_mail = $("#input_mail").val();
+            var input_description = $("#input_description").val();
+            var input_cv = $("#input_cv").val();
+            
+            if((input_nom != "")&&(input_cle != "")&&(input_code_user != "")&&(input_mail != "")&&(input_cv != "")){
+                $.functionsLib.notification("Merci de patienter ...", $.functionsLib.INFO);
+                var tabInput = { input_nom : input_nom, input_cle : input_cle, input_code_user : input_code_user, input_mail : input_mail, input_description: input_description, input_cv : input_cv  };
+                var tabSetting = { functionRetour : retourCreerCompte};
+                $.functionsLib.callRest("phpsql/creerCompte.php", tabSetting, tabInput);  
+            } else{
+                $.functionsLib.notification("Problème avec les inputs", $.functionsLib.WARNING);
+            }       
+        } catch (er) {
+            $.functionsLib.log(0, "ERROR(creerCompte):" + er.message);
+        }
+    }
+
+    ///////////////////
+    //BLOCK FONCTIONS TECHNIQUE
+    ///////////////////
+
+    ///////////////////
+    //BLOCK FONCTIONS AFFICHAGE
+    ///////////////////
+    /**
+     * retourCreerCompte
+     * 
+     * @param {array} p_retour
+     */
+    function retourCreerCompte(json_retour){
+        try {
+            if(json_retour["strErreur"] == ""){
+                
+                var nom_pdf = "CV_ROSITOF_"+$("#input_code_user").val()+".pdf";
+                uploadFile("input_cv","pj/",nom_pdf);
+                
+                $("#input_cv").val("");
+                $("#input_nom").val("");
+                $("#input_cle").val("");
+                $("#input_code_user").val("");
+                $("#input_mail").val("");
+                $("#input_description").val("");
+                
+                $.functionsLib.notification("Compte créé num : "+json_retour["data"]["resultatInsert"], $.functionsLib.SUCCES);
+            } else{
+                $.functionsLib.notification("Erreur : "+json_retour["strErreur"], $.functionsLib.ALERT);
+            }
+        } catch (er) {
+            $.functionsLib.log(0, "ERROR(retourCreerCompte):" + er.message);
+        }
+    }
+</script>
+
+</head>
+<body onload="OnLoad();">
+
+    <!-- page -->
+    <div data-role="page" data-title="Titre">
+
+        <!-- /panel -->
+        <div data-role="panel" id="mypanel" data-display="overlay" data-position="left">
+
+        </div>
+        <!-- /panel -->
+
+        <!-- header -->
+        <div data-role="header" data-position="fixed">
+            <a href="#mypanel" data-role="button" data-icon="home" data-iconpos="notext">home</a>
+            <h1 id="id_titre">titre</h1>
+            <a href="javascript:window.location = ('./api_page_contact.html?mili='+$.functionsLib.getMilise());" data-role="button" data-icon="info" data-iconpos="notext">Contact</a>
+        </div>
+        <!-- /header -->
+        
+        <!-- navbar -->
+        <!-- /navbar -->
+
+        <!-- content -->
+        <div data-role="content" id="main_content">
+            <div data-role="collapsible" data-collapsed="false" data-mini="true">
+                <h3>Créer un profile</h3>
+                Nom : <input id="input_nom" type="text">
+                Clé : <input id="input_cle" type="text">
+                Code utilisateur :<input id="input_code_user" type="text">
+                Mail : <input id="input_mail" type="email">
+                Description : <input id="input_description" type="text">
+                <label for="input_cv">CV :</label>
+                <input type="file" name="input_cv" id="input_cv" data-clear-btn="true">
+                <a href="javascript:creerCompte();" data-role="button" data-inline="true" data-icon="arrow-r" data-mini="true">Soumettre</a>
+            </div>       
+        </div>
+        <!-- /content -->
+
+        <!-- footer -->
+        <div data-role="footer" data-position="fixed">
+            <a data-role="button" data-icon="search" data-iconpos="notext" class="ui-btn-left" href="javascript:window.location = ('./api_page_faq.html?mili='+$.functionsLib.getMilise());">FAQ</a>
+            <h1 id="id_affichageUser">User</h1>
+            <a data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" href="javascript:window.location = ('./api_page_sortie.html?mili='+$.functionsLib.getMilise());">Logout</a>
+        </div>
+        <!-- /footer -->
+
+    </div>
+    <!-- /page -->
+</body>
+</html>

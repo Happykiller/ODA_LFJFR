@@ -20,14 +20,12 @@
     <script type="text/javascript" src="js/fonctions.js"></script>
     <script type="text/javascript">
         function init() {
-        try {
-            checkMaintenance();
-            logLfjfr();
+            try {
+                $.functionsApp.logLfjfr();
+            } catch (er) {
+                $.functionsLib.log(0, "ERROR(init):" + er.message);
+            }
         }
-        catch (er) {
-            log(0, "ERROR(init):" + er.message);
-        }
-    }
     </script>
 </head> 
 

@@ -20,9 +20,6 @@
     <script type="text/javascript" src="js/fonctions.js"></script>
 
     <script type="text/javascript">
-    checkMaintenance();
-    checkAuthentification();
-    
     ///////////////////
     //BLOCK VARIABLE GLOBAL
     ///////////////////
@@ -31,33 +28,12 @@
     ///////////////////
     //BLOCK FONCTIONS EVENEMENTS
     ///////////////////
-    //A la construction de la page
-    $(document).on('pageinit',function() {
-        try {
-            // Init commmun
-            init_commun();
-
-            // Init page
-        } catch (er) {
-            log(0, "ERROR(init_home):" + er.message);
-        }
-    });
-
-    //Affichage de la page avant onload
-    $(document).on('pageshow',function() {
-        try {
-            show_commun();
-        } catch (er) {
-            log(0, "ERROR(show):" + er.message);
-        }
-    });
-
     //Fin chargement page
     function OnLoad() {
         try {
             //
         } catch (er) {
-            log(0, "ERROR(OnLoad):" + er.message);
+            $.functionsLib.log(0, "ERROR(OnLoad):" + er.message);
         }
     }
     </script>
@@ -77,7 +53,7 @@
         <div data-role="header" data-position="fixed">
             <a href="#mypanel" data-role="button" data-icon="home" data-iconpos="notext">home</a>
             <h1 id="id_titre">titre</h1>
-            <a href="javascript:window.location = ('./page_contact.html?mili='+getMilise());" data-role="button" data-icon="info" data-iconpos="notext">Contact</a>
+            <a href="javascript:window.location = ('./api_page_contact.html?mili='+$.functionsLib.getMilise());" data-role="button" data-icon="info" data-iconpos="notext">Contact</a>
         </div>
         <!-- /header -->
 
@@ -89,7 +65,7 @@
                     <div class="ui-block-a">
                         <div class="ui-grid-a ui-responsive">
                             <div class="ui-block-a">
-                                <center><img src="img/2013-05-16 16-10-17.png" alt="Photo" border="1"></center>
+                                <center><img src="img/2013-05-16 16-10-17.png" alt="Photo"></center>
                             </div>
                             <div class="ui-block-b">
                                 <h1>Fabrice Rosito</h1>
@@ -101,8 +77,8 @@
                         </div>
                     </div>	
                     <div class="ui-block-b">	
-                        <a href="http://www.linkedin.com/pub/fabrice-rosito/43/6b4/b57" target="_new">Me retrouver sous Linkedin</a><br>
-                        <a href="javascript:window.location = ('./page_contact.html?mili='+getMilise());">Mes Coordonn&eacute;es</a><br>
+                        <a href="http://www.linkedin.com/pub/fabrice-rosito/43/6b4/b57" target="new">Me retrouver sous Linkedin</a><br>
+                        <a href="javascript:window.location = ('./api_page_contact.html?mili='+$.functionsLib.getMilise());">Mes Coordonn&eacute;es</a><br>
                         <br>
                         <hr>
                         <br>
@@ -114,8 +90,8 @@
                             <li>Octobre 2013 - Devenir Agile avec Scrum</li>
                             <li>Mai 2013 - Formation D&eacute;veloppement web .NET</li>
                         </UL>
-                        <b>Exp&eacute;riences et comp&eacute;tences</b> : <a id= "link_passe" href="javascript:window.location = ('page_passe.html?mili='+getMilise());">15 ans en d&eacute;tails ici</a><br>
-                        <b>Mon CV au format plat</b> : <a id= "link_pj" href="javascript:window.location = ('page_pj.html?mili='+getMilise());">Ici</a><br>
+                        <b>Exp&eacute;riences et comp&eacute;tences</b> : <a id= "link_passe" href="javascript:window.location = ('page_passe.html?mili='+$.functionsLib.getMilise());">15 ans en d&eacute;tails ici</a><br>
+                        <b>Mon CV au format plat</b> : <a id= "link_pj" href="javascript:window.location = ('page_pj.html?mili='+$.functionsLib.getMilise());">Ici</a><br>
                         <br>
                         <hr>
                         <br>
@@ -123,21 +99,21 @@
                         <b>Sports</b> : Natation, Basketball<br>
                         <b>Voyages</b> : Europe<br>
                         <b>Diverstissements</b> : Jeux, Cinema, Musique, Sortie entre amis<br>
-                        <b>Implications</b> : Pr&eacute;sident du conseil Syndical de son lotissement, <a href="http://www.alpesjug.org/" target="_new" title="Le Java User Group des Alpes">JUG</a><br>
+                        <b>Implications</b> : Pr&eacute;sident du conseil Syndical de son lotissement, <a href="http://www.alpesjug.org/" target="new" title="Le Java User Group des Alpes">JUG</a><br>
                     </div>
                 </div>
                 <p>Comptant plus de 15 ann&eacute;es d'exp&eacute;riences dans le secteur des technologies de l'information, je poss&egrave;de un vaste savoir-faire en gestion de projets ainsi qu'en d&eacute;veloppement, documentation, codage et mise en oeuvre de solutions technologiques.</p>
                 <p>Passionn&eacute; par l'Agilit&eacute;, l'int&eacute;gration continue et l'architecture, j'ai souhait&eacute; vous offrir mon exp&eacute;rience.</p>				
-                <p>En savoir plus sur mes souhaits <a href="javascript:window.location = ('page_futur.html?mili='+getMilise());" title="Citation needed">Ici</a></p>	
+                <p>En savoir plus sur mes souhaits <a href="javascript:window.location = ('page_futur.html?mili='+$.functionsLib.getMilise());" title="Citation needed">Ici</a></p>	
             </div>	
         </div>
         <!-- /content -->
 
         <!-- footer -->
         <div data-role="footer" data-position="fixed">
-            <a data-role="button" data-icon="search" data-iconpos="notext" class="ui-btn-left" href="javascript:window.location = ('./page_faq.html?mili='+getMilise());">FAQ</a>
+            <a data-role="button" data-icon="search" data-iconpos="notext" class="ui-btn-left" href="javascript:window.location = ('./api_page_faq.html?mili='+$.functionsLib.getMilise());">FAQ</a>
             <h1 id="id_affichageUser">User</h1>
-            <a data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" href="javascript:window.location = ('./page_sortie.html?mili='+getMilise());">Logout</a>
+            <a data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" href="javascript:window.location = ('./api_page_sortie.html?mili='+$.functionsLib.getMilise());">Logout</a>
         </div>
         <!-- /footer -->
 
