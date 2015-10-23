@@ -109,13 +109,52 @@
                  */
                 start: function () {
                     try {
-
+                        $.Oda.App.Controler.Passe.loadExp({"filter":""});
                         return this;
                     } catch (er) {
                         $.Oda.Log.error("$.Oda.App.Controler.Passe.start : " + er.message);
                         return null;
                     }
-                }
+                },
+                /**
+                 * @param {Object} p_params
+                 * @param {String} p_params.filter
+                 * @returns {$.Oda.App.Controler.Passe}
+                 */
+                loadExp : function (p_params) {
+                    try {
+                        var tabInput = { "critere" : p_params.filter };
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/getExperiences.php", {"functionRetour": function(response){
+                            $.each( response.data.resultat.data, function( index, value ) {
+                                var strHtml = $.Oda.Display.TemplateHtml.create({
+                                    "template" : "experience"
+                                    , "scope" : {
+                                        "title" : value.titre_experience,
+                                        "cmt" :  value.commentaire_titre,
+                                        "customer" : value.employeur,
+                                        "begin" : value.debut,
+                                        "end" : value.fin,
+                                        "fonction" : value.fonction,
+                                        "secteur" : value.secteur,
+                                        "fonctionnel" : value.fonctionnel,
+                                        "realisation" : value.realisation,
+                                        "language" : value.language,
+                                        "applicatif" : value.applicatif,
+                                        "develloppement" : value.develloppement,
+                                        "bdd" : value.bdd
+                                    }
+                                });
+
+                                $('#listExp').after(strHtml);
+                            });
+                        }}, tabInput);
+
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Controler.Passe.loadExp : " + er.message);
+                        return null;
+                    }
+                },
             }
         }
     };

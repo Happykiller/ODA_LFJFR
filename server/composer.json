@@ -13,6 +13,6 @@
     "happykiller/oda": "@dev"
   },
   "autoload": {
-    "psr-4": { "Pok\\": "class" }
+    "psr-4": { "Lfjfr\\": "class" }
   }
 }

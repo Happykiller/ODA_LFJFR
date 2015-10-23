@@ -1,5 +1,5 @@
 <?php
-namespace Pok;
+namespace Lfjfr;
 
 require '../header.php';
 require '../vendor/autoload.php';
@@ -15,7 +15,7 @@ use \stdClass, \Oda\OdaLibInterface;
  * @author  Fabrice Rosito <rosito.fabrice@gmail.com>
  * @version 0.150221
  */
-class PokInterface extends OdaLibInterface {
+class LfjfrInterface extends OdaLibInterface {
     /**
      * sayHello
      * @return string
