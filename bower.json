@@ -1,0 +1,17 @@
+{
+	"name": "lfjfr",
+	"version": "0.0.1",
+	"homepage": "https://github.com/Happykiller/ODA_HOW",
+	"authors": ["Fabrice Rosito <fabrice.rosito@gmail.com>"],
+	"description": "Client for ODA-HOW",
+	"keywords": ["job"],
+	"license": "MIT",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules"
+	],
+	"dependencies": {
+	  "Oda" : "*"
+	}
+}
