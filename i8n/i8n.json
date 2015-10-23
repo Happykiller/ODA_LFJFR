@@ -1,0 +1,62 @@
+[
+  {
+    "groupName" : "home",
+    "fr" : {
+      "title" : "Mon profile"
+    },
+    "en" : {
+      "title" : "my profile"
+    }
+  },
+  {
+    "groupName": "pj",
+    "fr": {
+      "title": "Mon CV"
+    },
+    "en": {
+      "title": "CV"
+    }
+  },
+  {
+    "groupName": "passe",
+    "fr": {
+      "title": "Mon parcours",
+      "filter" : "Filtrer",
+      "filter-tips" : "Rechercher une compétence",
+      "filter-placeholder" : "Une compétence ici"
+    },
+    "en": {
+      "title": "Past",
+      "filter" : "filter",
+      "filter-tips" : "Search a skill",
+      "filter-placeholder" : "A skill"
+    }
+  },
+  {
+    "groupName": "futur",
+    "fr": {
+      "title": "Mes souhaits"
+    },
+    "en": {
+      "title": "My wishes"
+    }
+  },
+  {
+    "groupName": "manage",
+    "fr": {
+      "title": "Gestion du cv"
+    },
+    "en": {
+      "title": "Manage cv"
+    }
+  },
+  {
+    "groupName": "encours",
+    "fr": {
+      "title": "En cours"
+    },
+    "en": {
+      "title": "Current"
+    }
+  }
+]
