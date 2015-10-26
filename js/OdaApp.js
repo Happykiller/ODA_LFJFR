@@ -226,6 +226,22 @@
                         return null;
                     }
                 },
+            },
+            Pj : {
+                /**
+                 * @param {Object} that
+                 * @returns {$.Oda.App.Controler.Pj}
+                 */
+                getCV : function (that) {
+                    try {
+                        var url = $.Oda.Tooling.urlDownloadFromServerResources({"strPath": 'FRO/CV_ROSITOF_'+$.Oda.Session.code_user+'.pdf'});
+                        $(that).attr("href", url);
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Controler.Pj.getCV : " + er.message);
+                        return null;
+                    }
+                },
             }
         }
     };
