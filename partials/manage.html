@@ -3,6 +3,67 @@
 
     <div class="row">
         <div class="col-sm-12">
+            <h3>Cr&eacute;er un accés</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name" oda-label="manage.name">name :</label>
+                        <input required type="text" class="form-control" oda-input-text="name" oda-input-text-tips="manage.name-tips" oda-input-text-placeholder="manage.name-placeholder" oda-input-text-check="Oda.Regexs:fristName">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="key" oda-label="manage.key">key :</label>
+                        <input required type="text" class="form-control" oda-input-text="key" oda-input-text-tips="manage.key-tips" oda-input-text-placeholder="manage.key-placeholder" oda-input-text-check="Oda.Regexs:pass">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="codeUser" oda-label="manage.codeUser">codeUser :</label>
+                        <input required type="text" class="form-control" oda-input-text="codeUser" oda-input-text-tips="manage.codeUser-tips" oda-input-text-placeholder="manage.codeUser-placeholder" oda-input-text-check="Oda.Regexs:login">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="mail" oda-label="manage.mail">mail :</label>
+                        <input required type="text" class="form-control" oda-input-text="mail" oda-input-text-tips="manage.mail-tips" oda-input-text-placeholder="manage.mail-placeholder" oda-input-text-check="Oda.Regexs:mail">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="desc" oda-label="manage.desc">desc :</label>
+                        <input type="text" class="form-control" oda-input-text="desc" oda-input-text-tips="manage.desc-tips" oda-input-text-placeholder="manage.desc-placeholder" oda-input-text-check="Oda.Regexs:noInjection">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cv" oda-label="manage.cv">cv :</label>
+                        <div style="position:relative;">
+                            <a id="cv_href" class='btn btn-primary' href='javascript:;'>
+                                <span oda-label="manage.cv-placeholder"></span>
+                                <input required id="cv" type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' size="40" onchange='$("#upload-file-info").html($(this).val());'>
+                            </a>
+                            &nbsp;
+                            <span class='label label-info' id="upload-file-info"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <button type="button" oda-label="oda-main.bt-submit" oda-submit="submit" onclick="$.Oda.Controler.Auth.goIn();" class="btn btn-primary disabled" disabled>Submit</button >
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    $.Oda.App.Controler.Manage.start();
+</script>

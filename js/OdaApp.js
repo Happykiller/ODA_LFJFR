@@ -242,6 +242,66 @@
                         return null;
                     }
                 },
+            },
+            Manage : {
+                /**
+                 * @returns {$.Oda.App.Controler.Manage}
+                 */
+                start: function () {
+                    try {
+
+                        $.Oda.App.Controler.Manage.takeInputFile({elt:$('#cv')});
+                        $('#cv').bind("change",function(elt){
+                            $.Oda.App.Controler.Manage.takeInputFile({elt:elt.target});
+                        });
+
+                        $.Oda.Scope.Gardian.add({
+                            id : "gardianSubmit",
+                            listElt : ["name","key","codeUser","mail","desc","cv"],
+                            function : function(params){
+                                if( ($("#name").data("isOk")) && ($("#key").data("isOk"))  && ($("#codeUser").data("isOk"))  && ($("#mail").data("isOk"))  && ($("#desc").data("isOk"))  && ($("#cv").data("isOk")) ){
+                                    $("#submit").removeClass("disabled");
+                                    $("#submit").removeAttr("disabled");
+                                }else{
+                                    $("#submit").addClass("disabled");
+                                    $("#submit").attr("disabled", true);
+                                }
+                            }
+                        });
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Controler.Manage.start : " + er.message);
+                        return null;
+                    }
+                },
+                /**
+                 * @param {Object} p_params
+                 * @param p_params.elt
+                 * @returns {$.Oda.App.Controler.Manage}
+                 */
+                takeInputFile : function (p_params) {
+                    try {
+                        var $elt = $(p_params.elt);
+                        var $elt_href = $("#"+$elt[0].id+'_href');
+                        var required = !$.Oda.Tooling.isUndefined($elt.attr("required"));
+                        if(required && (($elt.val() === undefined) || ($elt.val() === ""))){
+                            $elt.data("isOk", false);
+                            $($elt_href).removeClass('btn-primary');
+                            $($elt_href).removeClass('btn-success');
+                            $($elt_href).addClass('btn-warning');
+                        }else{
+                            $elt.data("isOk", true);
+                            $($elt_href).removeClass('btn-primary')
+                            $($elt_href).removeClass('btn-warning');
+                            $($elt_href).addClass('btn-success');
+                        }
+                        $.Oda.Scope.Gardian.findByElt({id : $elt[0].id});
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Controler.Manage.takeInputFile : " + er.message);
+                        return null;
+                    }
+                },
             }
         }
     };

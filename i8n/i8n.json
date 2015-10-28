@@ -42,21 +42,55 @@
     }
   },
   {
-    "groupName": "manage",
-    "fr": {
-      "title": "Gestion du cv"
-    },
-    "en": {
-      "title": "Manage cv"
-    }
-  },
-  {
     "groupName": "encours",
     "fr": {
       "title": "En cours"
     },
     "en": {
       "title": "Current"
+    }
+  },
+  {
+    "groupName": "manage",
+    "fr": {
+      "title": "Gestion du cv",
+      "name": "Nom",
+      "name-tips" : "Le nom",
+      "name-placeholder" : "Au format nom",
+      "key": "Clé",
+      "key-tips" : "La clé",
+      "key-placeholder" : "Au format code",
+      "codeUser": "Code utilisateur",
+      "codeUser-tips" : "Le code utilisateur",
+      "codeUser-placeholder" : "Au format code",
+      "mail": "Email",
+      "mail-tips" : "L'email",
+      "mail-placeholder" : "Au format mail",
+      "desc": "Description",
+      "desc-tips" : "Texte libre",
+      "desc-placeholder" : "Une description",
+      "cv": "CV",
+      "cv-placeholder" : "Choisir cv pdf ..."
+    },
+    "en": {
+      "title": "Manage cv",
+      "name": "Name",
+      "name-tips" : "The name",
+      "name-placeholder" : "Name format",
+      "key": "Key",
+      "key-tips" : "The key",
+      "key-placeholder" : "Code format",
+      "codeUser": "User code",
+      "codeUser-tips" : "The user code",
+      "codeUser-placeholder" : "Code format",
+      "mail": "Email",
+      "mail-tips" : "The email",
+      "mail-placeholder" : "Mail format",
+      "desc": "Description",
+      "desc-tips" : "Free text",
+      "desc-placeholder" : "A description",
+      "cv": "CV",
+      "cv-placeholder" : "Choose cv pdf ..."
     }
   }
 ]
