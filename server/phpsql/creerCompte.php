@@ -1,10 +1,11 @@
 <?php
 namespace Lfjfr;
-use stdClass, \Oda\OdaPrepareInterface, \Oda\OdaPrepareReqSql, \Oda\OdaLibBd;
-//--------------------------------------------------------------------------
-//Header
-require("../API/php/header.php");
-require("../php/LfjfrInterface.php");
+
+require '../header.php';
+require '../vendor/autoload.php';
+require '../include/config.php';
+
+use \stdClass, \Oda\SimpleObject\OdaPrepareInterface, \Oda\SimpleObject\OdaPrepareReqSql, \Oda\OdaLibBd;
 
 //--------------------------------------------------------------------------
 //Build the interface
@@ -17,10 +18,10 @@ $INTERFACE = new LfjfrInterface($params);
 
 //--------------------------------------------------------------------------
 $params = new OdaPrepareReqSql();
-$params->sql = "INSERT INTO `tab_utilisateurs`
-    (`login`, `password`, `code_user`, `nom`, `profile`, `description`, `montrer_aide_ihm`, `mail`, `actif`, `date_creation`) 
+$params->sql = "INSERT INTO `api_tab_utilisateurs`
+    (`password`, `code_user`, `nom`, `id_rang`, `description`, `montrer_aide_ihm`, `mail`, `actif`, `date_creation`)
     VALUES 
-    (:nom,:cle,:code_user,:nom,99,:description,0,:mail,1,NOW())
+    (:cle,:code_user,:nom,1,:description,0,:mail,1,NOW())
 ;";
 $params->bindsValue = [
     "nom" => $INTERFACE->inputs["input_nom"]
@@ -31,6 +32,17 @@ $params->bindsValue = [
 ];
 $params->typeSQL = OdaLibBd::SQL_INSERT_ONE;
 $retour = $INTERFACE->BD_ENGINE->reqODASQL($params);
+
+$config = \Oda\SimpleObject\OdaConfig::getInstance();
+if(isset($config->resourcesPath)){
+    if (!file_exists("../" . $config->resourcesPath . $INTERFACE->inputs["input_code_user"])) {
+        mkdir("../" . $config->resourcesPath . $INTERFACE->inputs["input_code_user"], 0777, true);
+    }
+}else{
+    if (!file_exists("../".$INTERFACE->inputs["input_code_user"])) {
+        mkdir("../".$INTERFACE->inputs["input_code_user"], 0777, true);
+    }
+}
 
 //--------------------------------------------------------------------------
 $params = new stdClass();

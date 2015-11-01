@@ -76,6 +76,7 @@
                     "path" : "partials/encours.html",
                     "title" : "encours.title",
                     "urls" : ["budget"],
+                    "dependencies" : ["hightcharts"],
                     "middleWares" : ["support","auth"]
                 });
 
@@ -299,6 +300,100 @@
                         return this;
                     } catch (er) {
                         $.Oda.Log.error("$.Oda.App.Controler.Manage.takeInputFile : " + er.message);
+                        return null;
+                    }
+                },
+                /**
+                 * @returns {$.Oda.App.Contoler.Manage}
+                 */
+                submit: function () {
+                    try {
+                        var tabInput = { input_nom : $("#name").val(), input_cle : $("#key").val(), input_code_user : $("#codeUser").val(), input_mail : $("#mail").val(), input_description: $("#desc").val(), input_cv : $("#cv").val() };
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/creerCompte.php", {"functionRetour": function(response){
+                            $.Oda.Tooling.uploadFile({idInput : "cv", folder : $("#codeUser").val()+'/', name : 'CV_ROSITOF_' + $("#codeUser").val() + ".pdf"});
+                            $.Oda.Router.navigateTo();
+                        }}, tabInput);
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Contoler.Manage.submit : " + er.message);
+                        return null;
+                    }
+                },
+            },
+            Encours : {
+                /**
+                 * @returns {$.Oda.App.Controler.Encours}
+                 */
+                start: function () {
+                    try {
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/stats_budget.php", {"functionRetour": function(response){
+                            var series = [];
+
+                            var uneSerie = {
+                                name: 'Solde tout compte.',
+                                data: []
+                            };
+
+                            for (var indice in response["data"]["elements"]["data"]) {
+                                var element = response["data"]["elements"]["data"][indice];
+
+                                var date = element["date"];
+                                var jour = parseInt(date.substring(8,10));
+                                var mois = parseInt(date.substring(5,7)) - 1;
+                                var annee = parseInt(date.substring(0,4));
+
+                                var dateDate = Date.UTC(annee, mois, jour);
+                                var montant = $.Oda.Tooling.arrondir(parseFloat(response["data"][date]["solde"]),2);
+
+                                var myArrayForSerie = [dateDate, montant];
+
+                                uneSerie.data.push(myArrayForSerie);
+                            }
+
+                            series.push(uneSerie);
+
+                            console.log(series);
+
+                            $('#encours').highcharts({
+                                chart: {
+                                    type: 'spline',
+                                    zoomType: 'x'
+                                },
+                                title: {
+                                    text: 'Evolution des solde'
+                                },
+                                subtitle: {
+                                    text: 'Les soldes par compte'
+                                },
+                                xAxis: {
+                                    type: 'datetime',
+                                    title: {
+                                        text: 'Date'
+                                    }
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'Solde en €'
+                                    },
+                                    min: 0
+                                },
+                                tooltip: {
+                                    headerFormat: '<b>{series.name}</b><br>',
+                                    pointFormat: '{point.x:%e %b %Y}: {point.y:.2f}€'
+                                },
+                                plotOptions: {
+                                    spline: {
+                                        marker: {
+                                            enabled: false
+                                        }
+                                    }
+                                },
+                                series: series
+                            });
+                        }}, {});
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Controler.Encours.start : " + er.message);
                         return null;
                     }
                 },
