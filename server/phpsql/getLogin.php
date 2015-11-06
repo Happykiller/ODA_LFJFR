@@ -1,29 +1,30 @@
 <?php
 namespace Lfjfr;
-use stdClass, \Oda\OdaPrepareInterface, \Oda\OdaPrepareReqSql, \Oda\OdaLibBd;
-//--------------------------------------------------------------------------
-//Header
-require("../API/php/header.php");
-require("../php/LfjfrInterface.php");
+
+require '../header.php';
+require '../vendor/autoload.php';
+require '../include/config.php';
+
+use \stdClass, \Oda\SimpleObject\OdaPrepareInterface, \Oda\SimpleObject\OdaPrepareReqSql, \Oda\OdaLibBd;
 
 //--------------------------------------------------------------------------
 //Build the interface
 $params = new OdaPrepareInterface();
-$params->arrayInput = array("cle");
+$params->arrayInput = array("key");
 $INTERFACE = new LfjfrInterface($params);
 
 //--------------------------------------------------------------------------
-// phpsql/getLogin.php?milis=123456789&cle=fuel
+// phpsql/getLogin.php?milis=123456789&key=fuel
 
 //--------------------------------------------------------------------------
 $params = new OdaPrepareReqSql();
-$params->sql = "select a.`login`
+$params->sql = "select a.`code_user`
     from `api_tab_utilisateurs` a
-    where 1=1 
+    where 1=1
     and a.`password` = :password
 ;";
 $params->bindsValue = [
-    "password" => $INTERFACE->inputs["cle"]
+    "password" => $INTERFACE->inputs["key"]
 ];
 $params->typeSQL = OdaLibBd::SQL_GET_ONE;
 $retour = $INTERFACE->BD_ENGINE->reqODASQL($params);

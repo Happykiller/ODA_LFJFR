@@ -37,11 +37,48 @@
          */
         startApp: function (p_params) {
             try {
+
+                $.Oda.Router.addMiddleWare("quickLogin",function() {
+                    $.Oda.Log.debug("MiddleWares : quickLogin");
+
+                    var key = $.Oda.Router.current.args['key'];
+
+                    if(key !== undefined){
+                        delete $.Oda.Router.current.args['key'];
+                        var tabInput = { "key" : key };
+                        $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/getLogin.php", {functionRetour : function(response){
+                            if(response.data){
+                                var contact_mail_administrateur = $.Oda.Interface.getParameter("contact_mail_administrateur");
+
+                                var message_html = "";
+                                message_html += "<html><head></head><body>";
+                                message_html += "Nouvelle visite de "+response.data.code_user;
+                                message_html += "</body></html>";
+
+                                var sujet = "[ODA-" + $.Oda.Interface.getParameter("nom_site") + "]Nouvelle visite de "+response.data.code_user;
+
+                                var paramsMail = {
+                                    email_mail_ori: contact_mail_administrateur,
+                                    email_labelle_ori: "Service Mail ODA",
+                                    email_mail_reply: contact_mail_administrateur,
+                                    email_labelle_reply: "Service Mail ODA",
+                                    email_mails_dest: contact_mail_administrateur,
+                                    message_html: message_html,
+                                    sujet: sujet
+                                };
+
+                                var retour = $.Oda.Interface.sendMail(paramsMail);
+                                $.Oda.Security.auth({"login":response.data.code_user, "mdp":key, "reload":true});
+                            }
+                        }}, tabInput);
+                    }
+                });
+
                 $.Oda.Router.addRoute("home", {
                     "path" : "partials/home.html",
                     "title" : "home.title",
                     "urls" : ["","home"],
-                    "middleWares" : ["support","auth"]
+                    "middleWares" : ["support","quickLogin","auth"]
                 });
 
                 $.Oda.Router.addRoute("passe", {
@@ -351,8 +388,6 @@
                             }
 
                             series.push(uneSerie);
-
-                            console.log(series);
 
                             $('#encours').highcharts({
                                 chart: {
