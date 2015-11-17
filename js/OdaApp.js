@@ -71,6 +71,7 @@
                                     var retour = $.Oda.Interface.sendMail(paramsMail);
                                 }
                                 $.Oda.Security.auth({"login":response.data.code_user, "mdp":key, "reload":true});
+                                $.Oda.Display.Notification.success('Bienvenue sur mon CV en ligne, bonne découverte, à bientôt.');
                             }
                         }}, tabInput);
                     }
@@ -135,7 +136,6 @@
                  */
                 start: function () {
                     try {
-                        $.Oda.Display.Notification.success('Bienvenue sur mon CV en ligne, bonne découverte, à bientôt.')
                         return this;
                     } catch (er) {
                         $.Oda.Log.error("$.Oda.App.Controler.Home.start : " + er.message);
