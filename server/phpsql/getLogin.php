@@ -18,9 +18,10 @@ $INTERFACE = new LfjfrInterface($params);
 
 //--------------------------------------------------------------------------
 $params = new OdaPrepareReqSql();
-$params->sql = "select a.`code_user`
-    from `api_tab_utilisateurs` a
+$params->sql = "select a.`code_user`, b.`indice`
+    from `api_tab_utilisateurs` a, `api_tab_rangs` b
     where 1=1
+    and a.`id_rang` = b.`id`
     and a.`password` = :password
 ;";
 $params->bindsValue = [

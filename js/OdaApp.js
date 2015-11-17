@@ -48,26 +48,28 @@
                         var tabInput = { "key" : key };
                         $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/getLogin.php", {functionRetour : function(response){
                             if(response.data){
-                                var contact_mail_administrateur = $.Oda.Interface.getParameter("contact_mail_administrateur");
+                                if(response.data.indice > 10){
+                                    var contact_mail_administrateur = $.Oda.Interface.getParameter("contact_mail_administrateur");
 
-                                var message_html = "";
-                                message_html += "<html><head></head><body>";
-                                message_html += "Nouvelle visite de "+response.data.code_user;
-                                message_html += "</body></html>";
+                                    var message_html = "";
+                                    message_html += "<html><head></head><body>";
+                                    message_html += "Nouvelle visite de "+response.data.code_user;
+                                    message_html += "</body></html>";
 
-                                var sujet = "[ODA-" + $.Oda.Interface.getParameter("nom_site") + "]Nouvelle visite de "+response.data.code_user;
+                                    var sujet = "[ODA-" + $.Oda.Interface.getParameter("nom_site") + "]Nouvelle visite de "+response.data.code_user;
 
-                                var paramsMail = {
-                                    email_mail_ori: contact_mail_administrateur,
-                                    email_labelle_ori: "Service Mail ODA",
-                                    email_mail_reply: contact_mail_administrateur,
-                                    email_labelle_reply: "Service Mail ODA",
-                                    email_mails_dest: contact_mail_administrateur,
-                                    message_html: message_html,
-                                    sujet: sujet
-                                };
+                                    var paramsMail = {
+                                        email_mail_ori: contact_mail_administrateur,
+                                        email_labelle_ori: "Service Mail ODA",
+                                        email_mail_reply: contact_mail_administrateur,
+                                        email_labelle_reply: "Service Mail ODA",
+                                        email_mails_dest: contact_mail_administrateur,
+                                        message_html: message_html,
+                                        sujet: sujet
+                                    };
 
-                                var retour = $.Oda.Interface.sendMail(paramsMail);
+                                    var retour = $.Oda.Interface.sendMail(paramsMail);
+                                }
                                 $.Oda.Security.auth({"login":response.data.code_user, "mdp":key, "reload":true});
                             }
                         }}, tabInput);
@@ -133,7 +135,7 @@
                  */
                 start: function () {
                     try {
-
+                        $.Oda.Display.Notification.success('Bienvenue sur mon CV en ligne, bonne découverte, à bientôt.')
                         return this;
                     } catch (er) {
                         $.Oda.Log.error("$.Oda.App.Controler.Home.start : " + er.message);
