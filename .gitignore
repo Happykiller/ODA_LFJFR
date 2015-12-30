@@ -1,5 +1,5 @@
 config/config.js
-server/include/config.php
+server/config/config.php
 /bower_components
 /bower_components/*
 /node_modules

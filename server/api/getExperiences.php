@@ -3,7 +3,7 @@ namespace Lfjfr;
 
 require '../header.php';
 require '../vendor/autoload.php';
-require '../include/config.php';
+require '../config/config.php';
 
 use \stdClass, \Oda\SimpleObject\OdaPrepareInterface, \Oda\SimpleObject\OdaPrepareReqSql, \Oda\OdaLibBd;
 
@@ -14,7 +14,7 @@ $params->arrayInput = array("critere");
 $INTERFACE = new LfjfrInterface($params);
 
 //--------------------------------------------------------------------------
-// phpsql/getExperiences.php?milis=123456789&critere=java,sql
+// api/getExperiences.php?milis=123456789&critere=java,sql
 
 //--------------------------------------------------------------------------
 $critere = strtolower ($INTERFACE->inputs["critere"]);

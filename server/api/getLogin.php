@@ -3,7 +3,7 @@ namespace Lfjfr;
 
 require '../header.php';
 require '../vendor/autoload.php';
-require '../include/config.php';
+require '../config/config.php';
 
 use \stdClass, \Oda\SimpleObject\OdaPrepareInterface, \Oda\SimpleObject\OdaPrepareReqSql, \Oda\OdaLibBd;
 
@@ -14,11 +14,11 @@ $params->arrayInput = array("key");
 $INTERFACE = new LfjfrInterface($params);
 
 //--------------------------------------------------------------------------
-// phpsql/getLogin.php?milis=123456789&key=fuel
+// api/getLogin.php?milis=123456789&key=fuel
 
 //--------------------------------------------------------------------------
 $params = new OdaPrepareReqSql();
-$params->sql = "select a.`code_user`, b.`indice`
+$params->sql = "select a.`code_user`, b.`indice`, a.`id`
     from `api_tab_utilisateurs` a, `api_tab_rangs` b
     where 1=1
     and a.`id_rang` = b.`id`

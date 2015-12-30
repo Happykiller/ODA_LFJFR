@@ -20,11 +20,11 @@
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="bower_components/Oda/dist/Oda.js?modeExecution=app&debug=true"></script>
+    <script src="bower_components/Oda/dist/Oda.js?modeExecution=full&debug=true"></script>
 
     <script>
         $.Oda.Event.addListener({name : "oda-fully-loaded", callback : function(e){
-            $.Oda.App.startLfjfr();
+            $.Oda.App.startApp();
         }});
     </script>
 </head>

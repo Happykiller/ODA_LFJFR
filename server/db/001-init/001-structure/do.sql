@@ -17,3 +17,5 @@ CREATE TABLE IF NOT EXISTS `@prefix@tab_experiences` (
   `meta` varchar(500) NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+CREATE VIEW `@prefix@vue_budget` AS select str_to_date(`a`.`Date`,'%d/%m/%Y') AS `date`,`a`.`Compte` AS `compte`,`a`.`Tiers` AS `tiers`,`a`.`Categorie` AS `categorie`,`a`.`Type` AS `type`,(cast(replace(replace(replace(`a`.`Montant`,'€',''),',',''),' ','') as signed) / 100) AS `mantant`,`a`.`Note` AS `note` from `@prefix@rec_budget` `a` where (1 = 1);

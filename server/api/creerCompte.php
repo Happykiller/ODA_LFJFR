@@ -3,7 +3,7 @@ namespace Lfjfr;
 
 require '../header.php';
 require '../vendor/autoload.php';
-require '../include/config.php';
+require '../config/config.php';
 
 use \stdClass, \Oda\SimpleObject\OdaPrepareInterface, \Oda\SimpleObject\OdaPrepareReqSql, \Oda\OdaLibBd;
 
@@ -14,7 +14,7 @@ $params->arrayInput = array("input_nom","input_cle","input_code_user","input_mai
 $INTERFACE = new LfjfrInterface($params);
 
 //--------------------------------------------------------------------------
-// phpsql/creerCompte.php?milis=123450&ctrl=ok&input_nom=Test&input_cle=cle&input_code_user=TEST&input_mail=test@mail.com&input_description=hello&input_cv=truc.pdf
+// api/creerCompte.php?milis=123450&ctrl=ok&input_nom=Test&input_cle=cle&input_code_user=TEST&input_mail=test@mail.com&input_description=hello&input_cv=truc.pdf
 
 //--------------------------------------------------------------------------
 $params = new OdaPrepareReqSql();

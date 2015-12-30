@@ -1,9 +1,9 @@
 <?php
-namespace Project;
+namespace Lfjfr;
 
 require '../header.php';
 require '../vendor/autoload.php';
-require '../include/config.php';
+require '../config/config.php';
 
 use \stdClass, \Oda\SimpleObject\OdaPrepareInterface, \Oda\SimpleObject\OdaPrepareReqSql, \Oda\OdaLibBd;
 
@@ -14,7 +14,7 @@ $params->arrayInput = array("param_name");
 $INTERFACE = new ProjectInterface($params);
 
 //--------------------------------------------------------------------------
-// phpsql/exemple.php?milis=123450&ctrl=ok&param_name=nom_site
+// api/exemple.php?milis=123450&ctrl=ok&param_name=nom_site
 
 //--------------------------------------------------------------------------
 //EXEMPLE SELECT 1 ROW

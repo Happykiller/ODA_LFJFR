@@ -14,40 +14,28 @@
         VERSION = '0.1'
         ;
 
-    ////////////////////////// PRIVATE METHODS ////////////////////////
-    /**
-     * @name _init
-     * @desc Initialize
-     */
-    function _init() {
-        $.Oda.Event.addListener({name : "oda-fully-loaded", callback : function(e){
-            $.Oda.App.startApp();
-        }});
-    }
-
     ////////////////////////// PUBLIC METHODS /////////////////////////
     $.Oda.App = {
         /* Version number */
         version: VERSION,
 
         /**
-         * @param {Object} p_params
-         * @param p_params.attr
          * @returns {$.Oda.App}
          */
-        startApp: function (p_params) {
+        startLfjfr: function () {
             try {
-
                 $.Oda.Router.addMiddleWare("quickLogin",function() {
                     $.Oda.Log.debug("MiddleWares : quickLogin");
-
                     var key = $.Oda.Router.current.args['key'];
 
                     if(key !== undefined){
                         delete $.Oda.Router.current.args['key'];
+                        $.Oda.Context.window.location = "#"+$.Oda.Router.current.route;
                         var tabInput = { "key" : key };
-                        $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/getLogin.php", {functionRetour : function(response){
+                        $.Oda.Interface.callRest($.Oda.Context.rest+"api/getLogin.php", {functionRetour : function(response){
                             if(response.data){
+                                $.Oda.Session.code_user = response.data.code_user;
+                                $.Oda.Interface.addStat($.Oda.Session.code_user, $.Oda.Router.current.route, "request");
                                 if(response.data.indice > 10){
                                     var contact_mail_administrateur = $.Oda.Interface.getParameter("contact_mail_administrateur");
 
@@ -70,38 +58,79 @@
 
                                     var retour = $.Oda.Interface.sendMail(paramsMail);
                                 }
-                                $.Oda.Security.auth({"login":response.data.code_user, "mdp":key, "reload":true});
                                 $.Oda.Display.Notification.success('Bienvenue sur mon CV en ligne, bonne découverte, à bientôt.');
                             }
                         }}, tabInput);
+                    }else{
+                        if(($.Oda.Session.code_user === undefined)||($.Oda.Session.code_user === null)||($.Oda.Session.code_user === "")){
+                            $.Oda.Router.routerExit = true;
+                            $.Oda.Router.routes["301"].go();
+                        }else{
+                            $.Oda.Interface.addStat($.Oda.Session.code_user, $.Oda.Router.current.route, "request");
+                        }
                     }
                 });
 
                 $.Oda.Router.addRoute("home", {
-                    "path" : "partials/home.html",
+                    "path" : "partials/lfjfr.html",
                     "title" : "home.title",
                     "urls" : ["","home"],
-                    "middleWares" : ["support","quickLogin","auth"]
+                    "middleWares" : ["quickLogin"]
+                });
+
+                $.Oda.Router.addRoute("301", {
+                    "path" : "partials/301.html",
+                    "title" : "home.title",
+                    "urls" : ["301"],
+                    "system" : true
+                });
+
+                $.Oda.Router.addRoute("contact", {
+                    "path" : "partials/contact.html",
+                    "title" : "oda-main.contact",
+                    "urls" : ["contact"],
+                    "middleWares" : ["quickLogin"]
                 });
 
                 $.Oda.Router.addRoute("passe", {
                     "path" : "partials/passe.html",
                     "title" : "passe.title",
                     "urls" : ["passe"],
-                    "middleWares" : ["support","auth"]
+                    "middleWares" : ["quickLogin"]
                 });
 
                 $.Oda.Router.addRoute("futur", {
                     "path" : "partials/futur.html",
                     "title" : "futur.title",
                     "urls" : ["futur"],
-                    "middleWares" : ["support","auth"]
+                    "middleWares" : ["quickLogin"]
                 });
 
                 $.Oda.Router.addRoute("pj", {
                     "path" : "partials/pj.html",
                     "title" : "pj.title",
                     "urls" : ["pj"],
+                    "middleWares" : ["quickLogin"]
+                });
+
+                $.Oda.Router.startRooter();
+
+                return this;
+            } catch (er) {
+                $.Oda.Log.error("$.Oda.App.startLfjfr : " + er.message);
+                return null;
+            }
+        },
+
+        /**
+         * @returns {$.Oda.App}
+         */
+        startApp: function () {
+            try {
+                $.Oda.Router.addRoute("home", {
+                    "path" : "partials/home.html",
+                    "title" : "home.title",
+                    "urls" : ["","home"],
                     "middleWares" : ["support","auth"]
                 });
 
@@ -109,7 +138,7 @@
                     "path" : "partials/manage.html",
                     "title" : "accountNew.title",
                     "urls" : ["admin_projet"],
-                    "middleWares" : ["support","auth"]
+                    "middleWares" : ["support", "auth"]
                 });
 
                 $.Oda.Router.addRoute("encours", {
@@ -117,7 +146,7 @@
                     "title" : "encours.title",
                     "urls" : ["budget"],
                     "dependencies" : ["hightcharts"],
-                    "middleWares" : ["support","auth"]
+                    "middleWares" : ["support", "auth"]
                 });
 
                 $.Oda.Router.startRooter();
@@ -139,6 +168,19 @@
                         return this;
                     } catch (er) {
                         $.Oda.Log.error("$.Oda.App.Controler.Home.start : " + er.message);
+                        return null;
+                    }
+                }
+            },
+            Lfjfr: {
+                /**
+                 * @returns {$.Oda.App.Controler.Home}
+                 */
+                start: function () {
+                    try {
+                        return this;
+                    } catch (er) {
+                        $.Oda.Log.error("$.Oda.App.Controler.Lfjfr.start : " + er.message);
                         return null;
                     }
                 }
@@ -179,7 +221,7 @@
                 loadExp : function (p_params) {
                     try {
                         var tabInput = { "critere" : p_params.filter };
-                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/getExperiences.php", {"functionRetour": function(response){
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"api/getExperiences.php", {"functionRetour": function(response){
                             if(response.data.resultat.nombre === 0){
                                 $.Oda.Display.Notification.warning('Pas de r&eacute;sultat pour : '+p_params.filter);
                             }else{
@@ -348,7 +390,7 @@
                 submit: function () {
                     try {
                         var tabInput = { input_nom : $("#name").val(), input_cle : $("#key").val(), input_code_user : $("#codeUser").val(), input_mail : $("#mail").val(), input_description: $("#desc").val(), input_cv : $("#cv").val() };
-                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/creerCompte.php", {"functionRetour": function(response){
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"api/creerCompte.php", {"functionRetour": function(response){
                             $.Oda.Tooling.uploadFile({idInput : "cv", folder : $("#codeUser").val()+'/', name : 'CV_ROSITOF_' + $("#codeUser").val() + ".pdf"});
                             $.Oda.Router.navigateTo();
                         }}, tabInput);
@@ -365,7 +407,7 @@
                  */
                 start: function () {
                     try {
-                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"phpsql/stats_budget.php", {"functionRetour": function(response){
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"api/stats_budget.php", {"functionRetour": function(response){
                             var series = [];
 
                             var uneSerie = {
@@ -437,8 +479,4 @@
             }
         }
     };
-
-    // Initialize
-    _init();
-
 })();
