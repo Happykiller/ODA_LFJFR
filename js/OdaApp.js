@@ -165,6 +165,12 @@
                  */
                 start: function () {
                     try {
+                        var call = $.Oda.Interface.callRest($.Oda.Context.rest+"api/getLastVisit.php", {"functionRetour": function(response){
+                            for(var indice in response.data){
+                                $('#tabLastVisit tr:last').after('<tr><td>'+response.data[indice].visiteDate+'</td><td>'+response.data[indice].code_user+'</td><td>'+response.data[indice].nb+'</td></tr>');
+                            }
+                        }});
+
                         return this;
                     } catch (er) {
                         $.Oda.Log.error("$.Oda.App.Controler.Home.start : " + er.message);

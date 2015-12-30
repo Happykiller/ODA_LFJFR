@@ -2,10 +2,10 @@
   {
     "groupName" : "home",
     "fr" : {
-      "title" : "Mon profile"
+      "title" : "Accueil"
     },
     "en" : {
-      "title" : "my profile"
+      "title" : "Home"
     }
   },
   {
@@ -91,6 +91,26 @@
       "desc-placeholder" : "A description",
       "cv": "CV",
       "cv-placeholder" : "Choose cv pdf ..."
+    }
+  },
+  {
+    "groupName": "301",
+    "fr": {
+      "title": "Erreur",
+      "error": "Clé invalide ou manquante."
+    },
+    "en": {
+      "title": "Error",
+      "error": "Wrong or missed key."
+    }
+  },
+  {
+    "groupName": "lfjfr",
+    "fr": {
+      "title": "Mon profile"
+    },
+    "en": {
+      "title": "My profile"
     }
   }
 ]
